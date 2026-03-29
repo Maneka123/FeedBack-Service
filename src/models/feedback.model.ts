@@ -15,7 +15,6 @@ const feedbackSchema = new mongoose.Schema({
   ai_summary: String,
   ai_tags: [String],
   ai_processed: { type: Boolean, default: false }
-
 }, { timestamps: true });
 
 export default mongoose.model('Feedback', feedbackSchema);
