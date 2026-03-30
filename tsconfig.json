@@ -9,7 +9,7 @@
     "esModuleInterop": true,  
     "target": "es2020",
     "lib": ["es2020"],
-    "types": ["node"],
+    "types": ["node","jest"],
 
     // Other Outputs
     "sourceMap": true,
@@ -30,5 +30,6 @@
     "strict": true,
     "isolatedModules": false,
     "skipLibCheck": true
-  }
+  },
+  "include": ["src/**/*", "tests/**/*"]
 }

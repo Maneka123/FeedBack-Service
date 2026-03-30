@@ -4,6 +4,7 @@ npx ts-node-dev src/index.ts
 002]how to run frontend code
 npm install
 npm run dev
+http://localhost:3000/login-feedback
 
 003]project description
 
@@ -30,3 +31,6 @@ ADMIN_EMAIL=admin@test.com
 ADMIN_PASSWORD=123456
 
 006]screenshots
+
+007]docker-compose up -d --build
+docker ps

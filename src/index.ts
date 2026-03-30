@@ -14,9 +14,8 @@ import feedbackListSummaryRoutes from './routes/feedback.list.summary.routes';
 
 dotenv.config();
 
-const app = express();
+export const app = express(); // export app for tests
 
-// Allow requests from your frontend
 app.use(cors({
   origin: 'http://localhost:3000',
   methods: ['GET','POST','PUT','DELETE','PATCH'],
@@ -25,21 +24,24 @@ app.use(cors({
 
 app.use(express.json());
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI!)
-  .then(() => console.log('DB Connected'))
+// Only connect to DB if not already connected
+const dbUri = process.env.NODE_ENV === 'test' ? process.env.MONGO_URI_TEST : process.env.MONGO_URI;
+mongoose.connect(dbUri!)
+  .then(() => console.log(`DB Connected (${process.env.NODE_ENV || 'development'})`))
   .catch(err => console.error('DB Connection error:', err));
 
-// Feedback routes
-app.use('/api/feedback', feedbackRoutes);       // POST / create feedback
-app.use('/api/feedback', feedbackListRoutes);   // GET /list (admin)
-app.use('/api/feedback', feedbackDetailRoutes); // GET /:id (admin)
-app.use('/api/feedback', feedbackStatusRoutes); // PATCH /:id/status (admin)
-app.use('/api/feedback', feedbackDeleteRoutes); // DELETE /:id (admin)
-app.use('/api/feedback', feedbackFilterRoutes); // GET /filter
+// Routes
+app.use('/api/feedback', feedbackRoutes);
+app.use('/api/feedback', feedbackListRoutes);
+app.use('/api/feedback', feedbackDetailRoutes);
+app.use('/api/feedback', feedbackStatusRoutes);
+app.use('/api/feedback', feedbackDeleteRoutes);
+app.use('/api/feedback', feedbackFilterRoutes);
 app.use('/api/feedback/list/summary', feedbackListSummaryRoutes);
-
-// Auth routes
 app.use('/api/auth', authRoutes);
 
-app.listen(4000, '0.0.0.0', () => console.log('Server running on port 4000'));
+// Start server only if not testing
+if (process.env.NODE_ENV !== 'test') {
+  const PORT = process.env.PORT || 4000;
+  app.listen(4000, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
+}
