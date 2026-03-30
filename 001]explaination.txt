@@ -1,0 +1,32 @@
+001]how to run backend code
+npx ts-node-dev src/index.ts
+
+002]how to run frontend code
+npm install
+npm run dev
+
+003]project description
+
++user can submit feedback
+*auth routes include login and logout
+*admin can list all feedback
+*admin can view 1 feedback
++admin can update status
+*admin can delete feedback
+*admin can filter feedback based on status and category
+*gemini service enabled 
+
+004]tech stack
+*nodejs forbackend
+*next js for frontend
+*mongo db
+
+005]environment variables needed
+GEMINI_API_KEY=AIzaSyDYt8btFs28WgyQ7dqFw_XAsT4kZJJOFR0
+PORT=4000
+MONGO_URI=mongodb+srv://maneka:maneka123@mycluster.gpttvfg.mongodb.net/mern-feedback?retryWrites=true&w=majority
+JWT_SECRET=secret123
+ADMIN_EMAIL=admin@test.com
+ADMIN_PASSWORD=123456
+
+006]screenshots

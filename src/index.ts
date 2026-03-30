@@ -9,6 +9,8 @@ import feedbackListRoutes from './routes/feedback.list.routes';
 import feedbackDetailRoutes from './routes/feedback.detail.routes';
 import feedbackStatusRoutes from './routes/feedback.status.routes';
 import feedbackDeleteRoutes from './routes/feedback.delete.routes';
+import feedbackFilterRoutes from './routes/feedback.filter.routes';
+import feedbackListSummaryRoutes from './routes/feedback.list.summary.routes';
 
 dotenv.config();
 
@@ -34,6 +36,8 @@ app.use('/api/feedback', feedbackListRoutes);   // GET /list (admin)
 app.use('/api/feedback', feedbackDetailRoutes); // GET /:id (admin)
 app.use('/api/feedback', feedbackStatusRoutes); // PATCH /:id/status (admin)
 app.use('/api/feedback', feedbackDeleteRoutes); // DELETE /:id (admin)
+app.use('/api/feedback', feedbackFilterRoutes); // GET /filter
+app.use('/api/feedback/list/summary', feedbackListSummaryRoutes);
 
 // Auth routes
 app.use('/api/auth', authRoutes);
